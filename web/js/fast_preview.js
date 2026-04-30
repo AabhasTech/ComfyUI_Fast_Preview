@@ -1,5 +1,5 @@
-import { app } from "../../scripts/app.js";
-import { ComfyWidgets } from "../../scripts/widgets.js";
+import { app } from "../../../scripts/app.js";
+import { ComfyWidgets } from "../../../scripts/widgets.js";
 
 app.registerExtension({
     name: "Comfy.FastPreviewImage",
@@ -22,10 +22,18 @@ app.registerExtension({
                             widget.inputEl.style.opacity = "0.8";
                             widget.inputEl.style.textAlign = "center";
                         }
+                        
+                        // Force resize to fit new widget
+                        if (this.computeSize) {
+                            this.setSize(this.computeSize());
+                        }
                     }
                     
                     if (widget) {
                         widget.value = `Size: ${message.file_sizes.join(" | ")}`;
+                        if (widget.inputEl) {
+                            widget.inputEl.value = widget.value;
+                        }
                     }
                 }
                 
