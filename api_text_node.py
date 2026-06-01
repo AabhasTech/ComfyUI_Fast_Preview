@@ -18,5 +18,6 @@ class ApiTextOutputNode:
     CATEGORY = "Fast Preview"
 
     def send_text_to_api(self, text):
-        print(f"[Fast Preview] Sending text string to API payload: {text}")
-        return (text, {"ui": {"text": [text]}})
+        text_value = str(text)
+        print(f"[Fast Preview] Sending text string to API payload: {text_value}")
+        return {"ui": {"text": [text_value]}, "result": (text_value,)}
